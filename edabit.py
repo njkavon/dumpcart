@@ -4,7 +4,6 @@ def pyramid(n):  # triangle pattern of n height
         print(("#" * y).center(n * 2))
         y += 2
 
-
 pyramid(4)
 
 
@@ -151,7 +150,6 @@ def time_for_milk_and_cookies(date):
 
 def reverse(txt):
     return txt[::-1]
-    # return lst.reverse()
 
 # print(reverse("Think different."))
 
@@ -199,10 +197,11 @@ def count_vowels(txt):
 
 
 def add_nums(nums):
+    # sum string of numbers add_nums("2, 5, 1, 8, 4") ➞ 20
     return sum(int(_) for _ in nums.split(", "))
     # return eval(nums.replace(", ", "+"))
 
-    # sum string of numbers add_nums("2, 5, 1, 8, 4") ➞ 20
+# print(add_nums("2, 5, 1, 8, 4"))
 
 
 def counterpartCharCode(char):
@@ -436,3 +435,52 @@ def get_filename(path):  # gets filename form path
     return path.split("/")[-1]
 
 # print(get_filename("C:/Projects/pil_tests/ascii/edabit.txt"))
+
+
+def sort_by_length(lst):
+    return sorted(lst, key=len)  # reverse=True
+
+# print(sort_by_length(["apple", "pie", "shortcake"]))
+
+
+from datetime import date
+def how_unlucky(y):
+    # sum of friday 13's in given year
+    # unluck = 0
+    # for month in range(1, 13):
+    #     if date(y, month, 13).weekday() == 4:
+    #         unluck += 1
+    # return unluck
+
+    return sum([date(y, month, 13).weekday() == 4 for month in range(1, 13)])
+
+# print(how_unlucky(2021))
+
+
+def calculate_score(games):
+    # Given a sequence of Rock, Paper, Scissors games, determine who wins the most
+    # number of matches. If they tie, output "Tie".
+    abi = 0
+    ben = 0
+    for game in games:
+        if game[0] == game[1]:
+            continue
+        elif game[0] == 'S' and game[1] == 'P':
+            abi += 1
+        elif game[0] == 'R' and game[1] == 'S':
+            abi += 1
+        elif game[0] == 'P' and game[1] == 'R':
+            abi += 1
+        else:
+            ben += 1
+    return 'Abigail' if abi > ben else 'Tie' if abi == ben else 'Benson'
+
+# print(calculate_score([['S', 'S'], ['S', 'P'], ['R', 'S'], ['S', 'R'], ['R', 'R']]))
+
+
+def cap_to_front(s):
+    # moves all capital letters to the front of a word, keeps original relative order
+    # return ''.join([_ for _ in s if _.isupper()] + [_ for _ in s if _.islower()])
+    return ''.join(sorted(s, key=str.isupper, reverse=True))
+
+# print(cap_to_front("moveMENT"))
